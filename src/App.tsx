@@ -5,6 +5,8 @@ import './modules.css'
 import './detail.css'
 
 type Product = { id: number; name: string; sku: string; stock: number; reorder: number; price: number; category: string }
+
+const apiBaseUrl = import.meta.env.DEV ? 'http://localhost:4001' : ''
 const seedProducts: Product[] = [
   { id: 1, name: 'Ceramic travel mug', sku: 'CTM-001', stock: 124, reorder: 30, price: 24, category: 'Drinkware' },
   { id: 2, name: 'Canvas tote bag', sku: 'CTB-042', stock: 18, reorder: 25, price: 18, category: 'Bags' },
@@ -41,7 +43,7 @@ function App() {
   const lowStock = products.filter((product) => product.stock <= product.reorder)
   const notify = (message: string) => { setToast(message); window.setTimeout(() => setToast(''), 2400) }
   useEffect(() => { localStorage.setItem('shelfsync-products', JSON.stringify(products)) }, [products])
-  useEffect(() => { if (activeModule === 'Inventory' || activeModule === 'Overview' || activeModule === 'Reports') return; const endpoint = activeModule === 'Orders' ? 'orders' : 'suppliers'; fetch(`http://localhost:4001/api/${endpoint}`).then((response) => response.json()).then((payload) => setModuleData(payload.data)).catch(() => setModuleData([])) }, [activeModule])
+  useEffect(() => { if (activeModule === 'Inventory' || activeModule === 'Overview' || activeModule === 'Reports') return; const endpoint = activeModule === 'Orders' ? 'orders' : 'suppliers'; fetch(`${apiBaseUrl}/api/${endpoint}`).then((response) => response.json()).then((payload) => setModuleData(payload.data)).catch(() => setModuleData([])) }, [activeModule])
   useEffect(() => { localStorage.setItem('shelfsync-online', String(online)); localStorage.setItem('shelfsync-queued', String(queued)); localStorage.setItem('shelfsync-activity', JSON.stringify(activity)) }, [activity, online, queued])
   const setConnection = () => { if (!online && queued) { setActivity((current) => [`Synced ${queued} offline stock movement${queued > 1 ? 's' : ''}`, ...current]); setQueued(0); notify('Offline queue synced') } setOnline((current) => !current) }
   const saveMovement = () => { const product = products.find((item) => item.id === selectedId); if (!product || quantity < 1 || quantity > product.stock) { notify('Enter a quantity within available stock'); return } setProducts((items) => items.map((item) => item.id === selectedId ? { ...item, stock: item.stock - quantity } : item)); setActivity((current) => [`${quantity} units removed from ${product.name}`, ...current]); if (!online) setQueued((current) => current + 1); setMovementOpen(false); notify(online ? 'Stock movement synced and saved' : 'Movement saved to offline queue') }

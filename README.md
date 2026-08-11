@@ -1,6 +1,10 @@
 # ShelfSync
 
+[![Live demo](https://img.shields.io/badge/Live%20demo-Netlify-00C7B7?logo=netlify&logoColor=white)](https://shelf-sync.netlify.app)
+
 ShelfSync is an offline-aware inventory and operations workspace built as an independent full-stack portfolio project. It demonstrates business workflow design, state management, stock validation, responsive UI, and a Node.js API foundation.
+
+**[Open the live demo →](https://shelf-sync.netlify.app)**
 
 ## Product capabilities
 
@@ -10,9 +14,13 @@ ShelfSync is an offline-aware inventory and operations workspace built as an ind
 - Purchase-order, supplier, and reporting workspaces
 - CSV inventory export
 - Record detail drawers and workflow feedback
-- Local Express API for products, orders, suppliers, and stock movements
+- Netlify Function-backed order and supplier data for the deployed demo
 
 All data is synthetic. No client code, customer records, credentials, or proprietary workflows are included.
+
+## Deployment
+
+The public demo is deployed on Netlify. The React/Vite client is served from `dist`, and a same-origin Netlify Function supplies the synthetic purchase-order and supplier data used by the live workspace.
 
 ## Architecture
 
