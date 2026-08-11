@@ -1,0 +1,7 @@
+.module-detail { position: fixed; top: 0; right: 0; bottom: 0; z-index: 8; width: min(92vw, 380px); padding: 34px 28px; background: #fff; box-shadow: -14px 0 35px #152e281f; }
+.module-detail::before { content: 'Record details'; display: block; margin: -34px -28px 22px; padding: 18px 28px; border-bottom: 1px solid #e8eeeb; color: #183d33; font-size: 15px; font-weight: 750; }
+.module-detail > b { display: none; }
+.module-detail p { display: grid; gap: 5px; margin: 0; padding: 13px 0; border-bottom: 1px solid #eef2f0; color: #29453c; font-size: 14px; font-weight: 600; }
+.module-detail small { color: #819089; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+.module-detail button { width: 100%; margin-top: 24px; padding: 10px; border: 1px solid #d8e4df; border-radius: 8px; background: #fff; color: #31715f; font-size: 13px; font-weight: 700; }
+.module-detail button:hover { background: #edf7f3; }
