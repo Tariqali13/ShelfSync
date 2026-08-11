@@ -1,27 +1,65 @@
-# React + TypeScript + Vite
+# ShelfSync
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ShelfSync is an offline-aware inventory and operations workspace built as an independent full-stack portfolio project. It demonstrates business workflow design, state management, stock validation, responsive UI, and a Node.js API foundation.
 
-Currently, two official plugins are available:
+## Product capabilities
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Inventory search, stock valuation, and low-stock signals
+- Validated stock movements with browser-side persistence
+- Offline queue state and reconnection feedback
+- Purchase-order, supplier, and reporting workspaces
+- CSV inventory export
+- Record detail drawers and workflow feedback
+- Local Express API for products, orders, suppliers, and stock movements
 
-## Expanding the ESLint configuration
+All data is synthetic. No client code, customer records, credentials, or proprietary workflows are included.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Architecture
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```text
+React + TypeScript (Vite)
+        |
+        +--> local offline state / queue
+        |
+        v
+Express API (Node.js)
+        |
+        +--> inventory, suppliers, orders, stock movements
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Run locally
+
+Requires Node.js 18+.
+
+```bash
+npm install
+npm run dev:api
+```
+
+In another terminal:
+
+```bash
+npm run dev
+```
+
+The API runs on `http://localhost:4001`; Vite prints the client URL.
+
+## Quality
+
+```bash
+npm run build
+npm run lint
+```
+
+## Roadmap
+
+- PostgreSQL persistence and tenant isolation
+- Authenticated roles and approvals
+- Camera-backed barcode scanning
+- Inventory receiving, supplier management, and browser end-to-end tests
+
+## Security
+
+Use synthetic data only. Keep configuration in local `.env` files and never commit secrets.
+
+See [SECURITY.md](SECURITY.md).

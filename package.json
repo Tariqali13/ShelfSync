@@ -1,7 +1,8 @@
 {
   "name": "shelf-sync",
-  "private": true,
-  "version": "0.0.0",
+  "private": false,
+  "version": "0.1.0",
+  "description": "An offline-aware inventory and operations workspace built with React, TypeScript, and Node.js.",
   "type": "module",
   "scripts": {
     "dev": "vite",
