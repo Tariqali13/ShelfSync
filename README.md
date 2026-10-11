@@ -71,3 +71,7 @@ npm run lint
 Use synthetic data only. Keep configuration in local `.env` files and never commit secrets.
 
 See [SECURITY.md](SECURITY.md).
+
+---
+
+Built by [Tariq Ali](https://tariqali.dev). Data in the demo is synthetic.
